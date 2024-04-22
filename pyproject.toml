@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "demo-scheduler"
+version = "0.1.0"
+description = ""
+authors = ["Riccardo Zanella <riccardo.zanella@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+numpy = "^1.26.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.0"
+isort = "^5.13.2"
+mypy = "^1.9.0"
+flake8 = "^7.0.0"
+coverage = "^7.3.1"
+pytest = "^7.4.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py39', 'py310', 'py311', 'py312']
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+# available settings: https://mypy.readthedocs.io/en/latest/config_file.html
+python_version = 3.12
+
+warn_return_any = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+disallow_untyped_defs = true
+disallow_untyped_calls = true
+check_untyped_defs = true
+no_implicit_optional = true
+strict_optional = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+addopts = "-ra -q -v"
+pythonpath = [
+    "./"
+]
+testpaths = [
+    "tests"
+]
+
+[tool.coverage.run]
+branch = true
+source = ["demo_scheduler"]
+
+[tool.coverage.report]
+skip_empty = true
